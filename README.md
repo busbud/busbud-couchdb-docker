@@ -24,6 +24,10 @@ This will give you an image called busbud-couchdb that you can then run.
       -v /mnt/local_data_dir:/usr/local/var/lib/couchdb \
       busbud-couchdb
 
+## Restart after configuration change:
+
+    sudo docker restart busbud-couchdb
+
 ## Logging
 By default the container will log CouchDB at `/usr/local/var/log/couchdb/couchdb.log`. The logrotate config will create a new file every day and keep the previous day archived.
 
