@@ -24,5 +24,12 @@ RUN mkdir /secret && htpasswd -b -c /secret/htpasswd couchdb couchdb
 # Install logrotate
 RUN apt-get -y install logrotate
 
+# Install newrelic agent.sockets
+RUN apt-get -y install python-pip
+RUN pip install newrelic-plugin-agent
+
 # Overwrite the start_couch script with our own version that starts logrotate, couchdb and nginx
 ADD ./opt /opt
+
+# Add the newrelic config file with %LICENSE_KEY% template
+ADD ./config/newrelic /etc/newrelic
