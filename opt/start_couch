@@ -15,11 +15,8 @@ chmod -R 0770 /usr/local/var/lib/couchdb \
 chmod 664 /usr/local/etc/couchdb/*.ini
 chmod 775 /usr/local/etc/couchdb/*.d
 
-# Start at the same time logrotate, couchdb and nginx
+# Modify configuration file "templates" with current environment
 sed -i "s/%LICENSE_KEY%/$NEWRELIC_KEY/" /etc/newrelic/newrelic_plugin_agent.cfg
 
-(while true; do /usr/sbin/logrotate -v /etc/logrotate.conf; sleep 1d; done) & \
-sudo -i -u couchdb mon couchdb > /dev/null 2>&1 & \
-/usr/sbin/nginx > /dev/null 2>&1 & \
-/usr/local/bin/newrelic_plugin_agent  --config /etc/newrelic/newrelic_plugin_agent.cfg --foreground > /dev/null 2>&1 & \
-sleep infinity
+# Run everything
+/usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf

@@ -11,16 +11,12 @@ This will give you an image called busbud-couchdb that you can then run.
     sudo docker start busbud-couchdb || sudo docker run -d \
       --name="busbud-couchdb" \
       -p 80:80 \
-      -v $(pwd)/config/couchdb:/usr/local/etc/couchdb \
-      -v $(pwd)/config/nginx:/etc/nginx \
       busbud-couchdb
 
 ## Run with custom data dir from host:
 
     sudo docker start busbud-couchdb || sudo docker run -d -p 80:80 \
       --name="busbud-couchdb" \
-      -v $(pwd)/config/couchdb:/usr/local/etc/couchdb \
-      -v $(pwd)/config/nginx:/etc/nginx \
       -v /mnt/local_data_dir:/usr/local/var/lib/couchdb \
       busbud-couchdb
 
