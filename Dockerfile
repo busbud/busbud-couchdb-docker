@@ -6,7 +6,7 @@ MAINTAINER Ziad Saab ziad.saab@gmail.com
 # Change default CouchDB's log rotation to daily, and keep only 1 day
 RUN sed -i "s/weekly/daily/;s/rotate 10/rotate 1/" /usr/local/etc/logrotate.d/couchdb
 # Configure
-RUN rm -rf /usr/local/etc/couchdb
+RUN rm -rf /usr/local/etc/couchdb/*
 ADD ./config/couchdb /usr/local/etc/couchdb
 
 
